@@ -115,6 +115,19 @@ Bridge modbus:tcp:sungrowBridge [ host="10.0.0.2", port=502, id=1, enableDiscove
 }
 ```
 
+This example shows the configuration of two Sungrow inverters (master-slave via COM1) connected to openHAB via Modbus. Each inverter requires a communication module (WiNet) and its own IP address.
+
+_sungrow.things_
+
+```java
+Bridge modbus:tcp:sungrowBridge_Master [ host="Inverter IP Master", port=502, id=1, enableDiscovery=false ] {
+Thing sungrow-inverter sungrowInverter_master "Sungrow Inverter Master" [ pollInterval=5000 ]
+}
+Bridge modbus:tcp:sungrowBridge_Slave [ host="Inverter IP Slave", port=502, id=1, enableDiscovery=false ] {
+Thing sungrow-inverter sungrowInverter_slave "Sungrow Inverter Slave" [ pollInterval=5000 ]
+}
+```
+
 _sungrow.items_
 
 ```java
